@@ -1,0 +1,40 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.cursos.insertMany([
+    {
+        nombre: "Curso de MongoDB",
+        id_curso: 1,
+    },
+    {
+        nombre: "Curso de JavaScript",
+        id_curso: 2,
+    },
+    {
+        nombre: "Curso de Python",
+        id_curso: 3,
+    }
+])
+db.alumnos.insertMany([
+    {
+        nombre: "Carlos",
+        edad: 20,
+        id_curso: [1, 2],
+    },
+    {
+        nombre: "Laura",
+        edad: 22,
+        id_curso: [1, 3],
+    },
+    {
+        nombre: "Pedro",
+        edad: 28,
+        id_curso: [2, 3],
+    },
+    {
+        nombre: "Sofia",
+        edad: 19,
+        id_curso: [1],
+    }
+])

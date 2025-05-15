@@ -1,0 +1,54 @@
+db.dropDatabase()
+
+use('tiendaOnline')
+
+db.productos.aggregate([
+    { 
+        $project: { 
+            nombre: 1,
+            precio: 1, 
+            categoria: 1,
+            tipo_precio: { 
+                $cond: { 
+                    if: { $lt: ["$precio", 100] }, 
+                    then: "Precio Economico", 
+                    else: {
+                        $cond: {
+                            if: { $lte: ["$precio", 500] }, 
+                            then: "Precio Estandar",
+                            else: "Precio Premium" 
+                            
+                        }
+                    }
+                }
+            }
+        }
+    },
+    { $group: { _id: "$tipo_precio", total_productos: { $sum: 1 }, nombre_productos:{ $push: "$nombre" }, precio_minimo: { $min: "$precio" }, precio_maximo: { $max: "$precio" }, precio_promedio: { $avg: "$precio" } } },
+    { $sort: { _id: 1 } }
+]);
+
+db.ventas.aggregate([
+    {
+        $project: {
+            _id: 1,
+            total: 1,
+            cliente: 1,
+            calificacion: {
+                $cond: {
+                    if: { $lt: ["$total", 200] }, 
+                    then: "Venta/s Pequeñas",
+                    else: {
+                        $cond: {
+                            if: { $lte: ["$total", 800] }, 
+                            then: "Venta/s Medianas",
+                            else: "Venta/s Grandes"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    { $group: { _id: "$calificacion", total_ventas: { $sum: 1 }, total_ventas_dinero: { $sum: "$total" }, total_minimo: { $min: "$total" }, total_maximo: { $max: "$total" }, total_promedio: { $avg: "$total" } } },
+    { $sort: { _id: -1 } }
+]);

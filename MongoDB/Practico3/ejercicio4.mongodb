@@ -1,0 +1,14 @@
+db.dropDatabase()
+
+use('tiendaOnline')
+
+db.productos.aggregate([
+    { $unwind: "$valoraciones" },
+    { $group: { 
+        _id:"valoraciones.puntuacion", 
+        cantidad_valoraciones: { $sum: 1 }, 
+        productos: { $push: "$nombre" }
+        } 
+    },
+    { $sort: { _id: 1 } }
+]);

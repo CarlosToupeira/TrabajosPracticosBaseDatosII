@@ -1,0 +1,13 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.empleados.insertMany([{
+    nombre: "Carlos",
+    direccion:{ciudad: "Barcelona", codigoPostal: "08001"}
+},
+{
+    nombre: "Laura",
+    direccion:{ciudad: "Madrid", codigoPostal: "28001"}
+}
+])

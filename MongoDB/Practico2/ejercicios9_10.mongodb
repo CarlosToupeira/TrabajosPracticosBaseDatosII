@@ -1,0 +1,13 @@
+// Ejercicio 9: La ventaja de usar la replica set es que los datos se escriben varias veces en diferentes localidades lo que permite ser mas tolerable a fallos y 
+// si sucede lo mencionado, se recuperan los datos que ya se escribieron en otro lado. 
+// Por otra parte el sharding aporta en una base de datos de alto volumen para reducir la carga de trabajo y trafico de datos enviando pedazos de datos a diferentes servidores o localidades.
+
+db.dropDatabase()
+
+use('empresa')
+
+db.createUser({user: "Usuario", pwd: "1234", roles: [{ role: "readWrite", db: "empresa" }]})
+
+// Comandos para hacer backup y restauración de una base de datos desde la terminal:
+// mongodump --db empresa --out /Descargas/backup
+// mongorestore --db empresa /Descargas/backup/empresa

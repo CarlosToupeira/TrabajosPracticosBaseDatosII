@@ -1,0 +1,43 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.empleados.insertMany([
+    {
+        nombre: "Juan",
+        edad: "30",
+        puesto: "Ventas"  
+    },
+    {
+        nombre: "Ana",
+        edad: "24",
+        puesto: "Marketing"  
+    },
+    {
+        nombre: "Luis",
+        edad: "35",
+        puesto: "Desarrollo"  
+    },
+    {
+        nombre: "Maria",
+        edad: "28",
+        puesto: "Recursos Humanos"  
+    },
+    {
+        nombre: "Pedro",
+        edad: "40",
+        puesto: "Gerente"  
+    },
+    {
+        nombre: "Sofia",
+        edad: "20",
+        puesto: "Pasante"
+    }
+])
+db.empleados.updateOne(
+    { nombre: "Juan" },
+    { $set: { edad: "31" } }
+)
+db.empleados.remove(
+    { puesto: "Pasante" }
+)

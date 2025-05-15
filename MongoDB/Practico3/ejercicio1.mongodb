@@ -1,0 +1,7 @@
+db.dropDatabase()
+
+use('tiendaOnline')
+
+db.productos.aggregate([
+  { $match: { categoria: "Electrónica", precio: { $gte: 500 } } }
+]);

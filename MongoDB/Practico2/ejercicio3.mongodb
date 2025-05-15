@@ -1,0 +1,5 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.empleados.find({}, {nombre:1, puesto:1, _id:0})

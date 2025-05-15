@@ -1,0 +1,30 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.ventas.insertMany([
+    {
+        producto: "Laptop",
+        precio_unitario: 1000,
+        cantidad: 5
+    },
+    {
+        producto: "Telefono",
+        precio_unitario: 500,
+        cantidad: 10
+    },
+    {
+        producto: "Tablet",
+        precio_unitario: 300,
+        cantidad: 8
+    }
+])
+db.ventas.aggregate([
+    {
+        $group: {
+            _id: "$producto",
+            totalVentas: { $sum:["$precio_unitario" * "$cantidad"]}
+        }
+    },
+    {$sort: { totalVentas: -1 }}
+])

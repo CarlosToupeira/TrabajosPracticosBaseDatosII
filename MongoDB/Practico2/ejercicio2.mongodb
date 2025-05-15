@@ -1,0 +1,7 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.empleados.find({
+    $and: [{edad:{$gte: "25", $lte: "40"}}]
+})

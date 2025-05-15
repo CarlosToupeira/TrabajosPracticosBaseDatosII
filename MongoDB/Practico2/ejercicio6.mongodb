@@ -1,0 +1,25 @@
+db.dropDatabase()
+
+use('empresa')
+
+db.clientes.insertMany([
+    {
+        nombre: "Juan",
+        apellido: "Pérez",
+        edad: 30,
+        direccion: { ciudad: "Buenos Aires", codigoPostal: "C1000" }
+    },
+    {
+        nombre: "Ana",
+        apellido: "Gómez",
+        edad: 24,
+        direccion: { ciudad: "Madrid", codigoPostal: "28001" }
+    },
+    {
+        nombre: "Luis",
+        apellido: "Fernández",
+        edad: 35,
+        direccion: { ciudad: "Barcelona", codigoPostal: "08001" }
+    }
+])
+db.clientes.createIndex({ apellido: 1, nombre: 1 })
