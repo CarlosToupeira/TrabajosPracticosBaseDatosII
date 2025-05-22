@@ -11,4 +11,4 @@ db.alumnos.aggregate([
             as: "cursos"
         }
     }
-])
+]);

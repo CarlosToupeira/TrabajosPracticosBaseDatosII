@@ -2,12 +2,6 @@ db.dropDatabase()
 
 use('empresa')
 
-db.empleados.insertMany([{
-    nombre: "Carlos",
-    direccion:{ciudad: "Barcelona", codigoPostal: "08001"}
-},
-{
-    nombre: "Laura",
-    direccion:{ciudad: "Madrid", codigoPostal: "28001"}
-}
-])
+db.empleados.updateMany({}, { $set: {"direccion.calle":"calle", "direccion.ciudad":"Bahia Blanca", "direccion.codigoPostal":"8000"} });
+
+db.empleados.find();

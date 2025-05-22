@@ -33,11 +33,11 @@ db.empleados.insertMany([
         edad: "20",
         puesto: "Pasante"
     }
-])
+]);
 db.empleados.updateOne(
     { nombre: "Juan" },
     { $set: { edad: "31" } }
-)
+);
 db.empleados.remove(
     { puesto: "Pasante" }
-)
+);

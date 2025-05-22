@@ -21,5 +21,6 @@ db.clientes.insertMany([
         edad: 35,
         direccion: { ciudad: "Barcelona", codigoPostal: "08001" }
     }
-])
-db.clientes.createIndex({ apellido: 1, nombre: 1 })
+]);
+
+db.clientes.createIndex({ apellido: 1, nombre: 1 });

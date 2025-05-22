@@ -6,7 +6,7 @@ db.dropDatabase()
 
 use('empresa')
 
-db.createUser({user: "Usuario", pwd: "1234", roles: [{ role: "readWrite", db: "empresa" }]})
+db.createUser({user: "Usuario", pwd: "1234", roles: [{ role: "readWrite", db: "empresa" }]});
 
 // Comandos para hacer backup y restauración de una base de datos desde la terminal:
 // mongodump --db empresa --out /Descargas/backup

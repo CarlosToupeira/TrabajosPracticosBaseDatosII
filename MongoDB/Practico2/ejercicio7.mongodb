@@ -15,7 +15,7 @@ db.cursos.insertMany([
         nombre: "Curso de Python",
         id_curso: 3,
     }
-])
+]);
 db.alumnos.insertMany([
     {
         nombre: "Carlos",
@@ -37,4 +37,4 @@ db.alumnos.insertMany([
         edad: 19,
         id_curso: [1],
     }
-])
+]);
