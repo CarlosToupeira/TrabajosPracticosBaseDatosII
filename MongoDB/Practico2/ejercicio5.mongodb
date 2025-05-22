@@ -20,6 +20,6 @@ db.ventas.insertMany([
     }
 ]);
 db.ventas.aggregate([
-    { $group: { _id: "$producto", totalVentas: { $sum:{$multiply:["$precio_unitario" * "$cantidad"] } } } },
+    { $group: { _id: "$producto", totalVentas: { $sum:{ $multiply:["$precio_unitario", "$cantidad"] } } } },
     {$sort: { totalVentas: -1 }}
 ]);
