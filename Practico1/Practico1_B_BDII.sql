@@ -40,20 +40,24 @@ INSERT INTO ventas (id_producto, cantidad, total, fecha_venta) VALUES
 (2, 5, 4000.00, '2025-02-12'),
 (5, 7, 3500.00, '2025-03-01');
 
+/*Ejercicio 5.A: Indices de rendimiento*/
 /*Diseño de una consulta para ver multiples campos por indices y rendimiento*/
 SELECT productos.nombre_producto, ventas.fecha_venta, ventas.cantidad, ventas.total FROM ventas JOIN productos ON ventas.id_producto = productos.id_producto
 WHERE productos.categoria = 'Accesorios' AND ventas.fecha_venta BETWEEN '2025-01-01' AND '2025-02-11' AND ventas.cantidad >=16;
 
+/*Ejercicio 5.B: Indices de rendimiento*/
 /*Crear diferentes indices por rendimiento*/
 CREATE INDEX indx_categoria ON productos(categoria);
 CREATE INDEX indx_fecha_cantidad ON ventas(fecha_venta, cantidad);
 CREATE INDEX indx_todo ON ventas(fecha_venta, cantidad, id_producto);
 
+/*Ejercicio 6.A: Vistas*/
 /*Crear una vista que resuma ventas mensuales por producto*/
 CREATE VIEW resumen_ventas_mensuales AS
 SELECT productos.id_producto, productos.nombre_producto, MONTH(ventas.fecha_venta) AS mes, YEAR(ventas.fecha_venta) AS anio, SUM(ventas.cantidad) AS total_unidades, SUM(ventas.total) AS total_ventas FROM ventas JOIN productos ON ventas.id_producto = productos.id_producto
 GROUP BY productos.id_producto, mes, anio;
 
+/*Ejercicio 6.B: Vistas*/
 /*Consultar para que se devuelva los 5 productos mas vendidos*/
 SELECT nombre_producto, SUM(total_unidades) AS unidades_totales FROM resumen_ventas_mensuales GROUP BY nombre_producto ORDER BY unidades_totales DESC limit 5;
 
